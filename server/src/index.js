@@ -17,16 +17,18 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 16) {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const clientOrigins = new Set([
-  process.env.CLIENT_URL || "http://localhost:5173",
-]);
-if (process.env.NODE_ENV !== "production") {
-  clientOrigins.add("http://localhost:5173");
-  clientOrigins.add("http://127.0.0.1:5173");
-}
+// Render (and most hosts) put a proxy in front of the app. Without this, req.ip
+// would be the proxy's address for everyone, which breaks the login attempt limiter.
+app.set("trust proxy", 1);
 
-app.use(cors({ origin: [...clientOrigins] }));
+app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" }));
 app.use(express.json({ limit: "20kb" }));
+
+// Cheap check for the host's health monitor. It doesn't touch the database,
+// so it won't keep a sleeping Neon database awake.
+app.get("/healthz", (req, res) => {
+  res.send("ok");
+});
 
 // Quick way to check the server and database are both up
 app.get("/api/health", async (req, res) => {
