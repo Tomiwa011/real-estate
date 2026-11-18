@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { formatPrice, getPropertyImage, plural } from "../utils/format";
+import {
+  formatPrice,
+  getPropertyImage,
+  plural,
+} from "../utils/format";
 
 function PropertyCard({ property }) {
   const { id, title, area, city, type, status, price, beds, baths, sqm } =
@@ -16,11 +20,11 @@ function PropertyCard({ property }) {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white transition-colors hover:border-steel motion-reduce:transition-none">
       <div className="relative aspect-[10/7] bg-mist">
         <img
-          src={getPropertyImage(property, 0, imgFailed)}
+          src={imgFailed ? getPropertyImage(property, 0, true) : getPropertyImage(property)}
           alt={title}
           loading="lazy"
           onError={() => setImgFailed(true)}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
+          className="h-full w-full object-cover"
         />
         <span
           className={`absolute left-3 top-3 rounded px-2.5 py-1 text-xs font-semibold text-white ${

@@ -2,15 +2,17 @@ import { useState } from "react";
 import { getPropertyImage } from "../utils/format";
 
 function PropertyGallery({ images, title, property }) {
-  const list = Array.isArray(images) && images.length > 0 ? images : [null];
+  const list = images && images.length > 0 ? images : [null];
 
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState({});
 
   const srcFor = (index) =>
-    failed[index]
-      ? getPropertyImage(property, index, true)
-      : list[index] || getPropertyImage(property, index);
+    getPropertyImage(
+      { ...property, images: list },
+      index,
+      Boolean(failed[index]),
+    );
 
   const markFailed = (index) =>
     setFailed((prev) => ({ ...prev, [index]: true }));

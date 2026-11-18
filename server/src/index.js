@@ -2,13 +2,30 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import pool from "./db.js";
+import authRouter from "./routes/auth.js";
 import propertiesRouter from "./routes/properties.js";
 import inquiriesRouter from "./routes/inquiries.js";
+
+// Refuse to start without a proper signing secret, so logins are never unsigned or guessable
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 16) {
+  console.error(
+    "JWT_SECRET is missing or too short. Add a long random string to server/.env (see .env.example)."
+  );
+  process.exit(1);
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" }));
+const clientOrigins = new Set([
+  process.env.CLIENT_URL || "http://localhost:5173",
+]);
+if (process.env.NODE_ENV !== "production") {
+  clientOrigins.add("http://localhost:5173");
+  clientOrigins.add("http://127.0.0.1:5173");
+}
+
+app.use(cors({ origin: [...clientOrigins] }));
 app.use(express.json({ limit: "20kb" }));
 
 // Quick way to check the server and database are both up
@@ -22,6 +39,7 @@ app.get("/api/health", async (req, res) => {
   }
 });
 
+app.use("/api/auth", authRouter);
 app.use("/api/properties", propertiesRouter);
 app.use("/api/inquiries", inquiriesRouter);
 

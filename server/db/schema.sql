@@ -33,3 +33,13 @@ CREATE TABLE IF NOT EXISTS inquiries (
 );
 
 CREATE INDEX IF NOT EXISTS idx_inquiries_property ON inquiries (property_id);
+
+-- Agents who can sign in to the dashboard
+CREATE TABLE IF NOT EXISTS users (
+  id            SERIAL PRIMARY KEY,
+  name          TEXT NOT NULL,
+  email         TEXT NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  role          TEXT NOT NULL DEFAULT 'agent',
+  created_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

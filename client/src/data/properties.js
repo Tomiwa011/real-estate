@@ -13,7 +13,7 @@ export const properties = [
     beds: 4,
     baths: 5,
     sqm: 320,
-    image: "https://picsum.photos/seed/prop1/800/560",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-10",
   },
   {
@@ -27,7 +27,7 @@ export const properties = [
     beds: 2,
     baths: 2,
     sqm: 120,
-    image: "https://picsum.photos/seed/prop2/800/560",
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-12",
   },
   {
@@ -41,7 +41,7 @@ export const properties = [
     beds: 3,
     baths: 3,
     sqm: 210,
-    image: "https://picsum.photos/seed/prop3/800/560",
+    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-02",
   },
   {
@@ -55,7 +55,7 @@ export const properties = [
     beds: 1,
     baths: 1,
     sqm: 45,
-    image: "https://picsum.photos/seed/prop4/800/560",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-14",
   },
   {
@@ -69,7 +69,7 @@ export const properties = [
     beds: 0,
     baths: 0,
     sqm: 600,
-    image: "https://picsum.photos/seed/prop5/800/560",
+    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-10-28",
   },
   {
@@ -83,7 +83,7 @@ export const properties = [
     beds: 5,
     baths: 6,
     sqm: 550,
-    image: "https://picsum.photos/seed/prop6/800/560",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-05",
   },
   {
@@ -97,7 +97,7 @@ export const properties = [
     beds: 3,
     baths: 3,
     sqm: 160,
-    image: "https://picsum.photos/seed/prop7/800/560",
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-16",
   },
   {
@@ -111,7 +111,7 @@ export const properties = [
     beds: 1,
     baths: 1,
     sqm: 55,
-    image: "https://picsum.photos/seed/prop8/800/560",
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85",
     createdAt: "2026-11-09",
   },
 ];
