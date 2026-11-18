@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { FALLBACK_IMAGE } from "../utils/format";
+import { getPropertyImage } from "../utils/format";
 
-function PropertyGallery({ images, title }) {
-  const list = images && images.length > 0 ? images : [null];
+function PropertyGallery({ images, title, property }) {
+  const list = Array.isArray(images) && images.length > 0 ? images : [null];
 
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState({});
 
   const srcFor = (index) =>
-    failed[index] || !list[index] ? FALLBACK_IMAGE : list[index];
+    failed[index]
+      ? getPropertyImage(property, index, true)
+      : list[index] || getPropertyImage(property, index);
 
   const markFailed = (index) =>
     setFailed((prev) => ({ ...prev, [index]: true }));

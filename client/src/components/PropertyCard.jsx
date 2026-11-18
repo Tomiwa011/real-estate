@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { formatPrice, plural, FALLBACK_IMAGE } from "../utils/format";
+import { formatPrice, getPropertyImage, plural } from "../utils/format";
 
 function PropertyCard({ property }) {
-  const { id, title, area, city, type, status, price, beds, baths, sqm, image } =
+  const { id, title, area, city, type, status, price, beds, baths, sqm } =
     property;
 
   const [imgFailed, setImgFailed] = useState(false);
@@ -16,11 +16,11 @@ function PropertyCard({ property }) {
     <article className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-white transition-colors hover:border-steel motion-reduce:transition-none">
       <div className="relative aspect-[10/7] bg-mist">
         <img
-          src={imgFailed || !image ? FALLBACK_IMAGE : image}
+          src={getPropertyImage(property, 0, imgFailed)}
           alt={title}
           loading="lazy"
           onError={() => setImgFailed(true)}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
         />
         <span
           className={`absolute left-3 top-3 rounded px-2.5 py-1 text-xs font-semibold text-white ${

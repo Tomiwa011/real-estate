@@ -128,7 +128,12 @@ function PropertyDetails() {
             </div>
 
             {/* key makes the gallery start from photo 1 for each property */}
-            <PropertyGallery key={property.id} images={images} title={title} />
+            <PropertyGallery
+              key={property.id}
+              images={images}
+              title={title}
+              property={property}
+            />
 
             <dl className="mt-8 grid grid-cols-2 gap-4 rounded-lg bg-mist p-5 sm:grid-cols-4">
               {facts.map((fact) => (
