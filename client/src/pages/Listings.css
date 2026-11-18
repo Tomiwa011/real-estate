@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --re-ink: #14262e;
+  --re-slate: #2f4a56;
+  --re-mist: #eef2f3;
+  --re-line: #d6dfe2;
+  --re-gold: #b8872f;
+  --re-sale: #1f6f5c;
+  --re-rent: #3b5a99;
+}
+
+.listings {
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  color: var(--re-ink);
+  background: #fff;
+  min-height: 100vh;
+}
+
+/* Hero */
+.listings__hero {
+  background: var(--re-ink);
+  color: #fff;
+  padding: 3.5rem 0 3rem;
+}
+
+.listings__hero h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.listings__hero p {
+  color: #b9c7cc;
+  max-width: 48ch;
+  margin-bottom: 1.5rem;
+}
+
+.listings__search {
+  max-width: 560px;
+}
+
+.listings__search .form-control {
+  padding: 0.85rem 1rem;
+  border: 0;
+  border-radius: 6px;
+}
+
+/* Layout */
+.listings__layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.listings__filters {
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+  padding: 1.25rem;
+  background: var(--re-mist);
+  border-radius: 8px;
+}
+
+.listings__filters .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.listings__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--re-line);
+}
+
+.listings__bar .form-select {
+  width: auto;
+}
+
+.listings__empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  border: 1px dashed var(--re-line);
+  border-radius: 8px;
+}
+
+/* Property card */
+.property-card {
+  position: relative; /* needed for the stretched link */
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--re-line);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+.property-card:hover {
+  border-color: var(--re-slate);
+}
+
+.property-card__media {
+  position: relative;
+  aspect-ratio: 10 / 7;
+  background: var(--re-mist);
+}
+
+.property-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.property-card__tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.property-card__tag--sale {
+  background: var(--re-sale);
+}
+
+.property-card__tag--rent {
+  background: var(--re-rent);
+}
+
+.property-card__body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.property-card__price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.property-card__price span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--re-slate);
+}
+
+.property-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+}
+
+.property-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.property-card__location {
+  color: var(--re-slate);
+  font-size: 0.9rem;
+  margin: 0 0 0.9rem;
+}
+
+.property-card__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--re-line);
+  font-size: 0.85rem;
+}
+
+/* Loading skeleton */
+.skeleton-card {
+  height: 340px;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--re-mist) 25%,
+    #f7f9f9 50%,
+    var(--re-mist) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Keyboard focus */
+.listings a:focus-visible,
+.listings button:focus-visible,
+.listings select:focus-visible,
+.listings input:focus-visible {
+  outline: 3px solid var(--re-gold);
+  outline-offset: 2px;
+}
+
+/* Mobile: filters stack above results */
+@media (max-width: 900px) {
+  .listings__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .listings__filters {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-card {
+    animation: none;
+  }
+
+  .property-card {
+    transition: none;
+  }
+}
